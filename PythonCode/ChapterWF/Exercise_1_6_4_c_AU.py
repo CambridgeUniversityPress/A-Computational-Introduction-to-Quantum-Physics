@@ -32,7 +32,7 @@ r = np.linspace(h, L, N)
 Psi = PsiFunk(r)              # Vector with function values
 
 # Calculate expectation value for Coulumb potential
-MeanV = -np.trapz(np.abs(Psi)**2/r, r)              
+MeanV = -sum(np.abs(Psi)**2/r)*h              
 
 # Set up vector with Psi''(r)
 PsiDoubleDeriv = np.zeros(N, dtype=complex)             # Allocate and declare
@@ -45,7 +45,7 @@ for n in range(1,N-1):
 
 
 # Calculate expectation value for kinetic energy
-MeanT = -1/2*np.trapz(np.conj(Psi)*PsiDoubleDeriv, r)   
+MeanT = -1/2*sum(np.conj(Psi)*PsiDoubleDeriv)*h   
 
 # Print resulst to screen
 print(f'Mean kinetic energy: {np.real(MeanT):.4e} a.u.')

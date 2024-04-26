@@ -29,7 +29,7 @@ Psi = PsiFunk(r)              # Vector with function values
 h = L/(N-1)                   # Increment 
 
 # Calculate expectation value for r
-MeanX = np.trapz(r*np.abs(Psi)**2, r)               # Mean position
+MeanX = sum(r*np.abs(Psi)**2)*h               # Mean position
 print(f'Mean position: {MeanX:.4e} a.u.')
 
 # Set up vector with Psi'(r)
@@ -43,6 +43,6 @@ for n in range(1,N-1):
 
 
 # Calculate expectation value for p
-MeanP = -1j*np.trapz(np.conj(Psi)*PsiDeriv, r)   
+MeanP = -1j*sum(np.conj(Psi)*PsiDeriv)*h   
 print(f'Mean momentum: {np.real(MeanP):.4e} a.u.')
 print(f'Imaginary part: {np.imag(MeanP):.4e} a.u.')
