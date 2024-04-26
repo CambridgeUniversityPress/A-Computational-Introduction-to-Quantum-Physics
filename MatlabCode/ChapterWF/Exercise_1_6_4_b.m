@@ -19,7 +19,7 @@ Psi = PsiFunk(r);               % Vector with function values
 h = L/N;                        % Increment 
 
 % Calculate expectation value for r
-MeanR = trapz(r, r.*abs(Psi).^2);                 % Mean position
+MeanR = sum(r.*abs(Psi).^2)*h;                 % Mean position
 % Write result to screen
 disp(['Mean distace: ', num2str(MeanR), ' a.u.'])
 
@@ -34,6 +34,6 @@ for n = 2:(N-1)
 end
 
 % Calculate expectation value for p
-MeanP = -1i*trapz(r, conj(Psi).*PsiDeriv);   % Mean momentum
+MeanP = -1i*sum(conj(Psi).*PsiDeriv)*h;   % Mean momentum
 % Write result to screen
 disp(['Mean momentum (real part): ', num2str(real(MeanP)), ' a.u.'])

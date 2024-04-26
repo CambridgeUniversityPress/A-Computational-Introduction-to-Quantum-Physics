@@ -31,12 +31,12 @@ for n = 2:(N-1)
   PsiDoubleDeriv(n) = (Psi(n+1)-2*Psi(n)+Psi(n-1))/h^2;
 end
 %
-ExpectKinEn = -1/2*trapz(r, conj(Psi).*PsiDoubleDeriv);
+ExpectKinEn = -1/2*sum(conj(Psi).*PsiDoubleDeriv)*h;
 
 %
 % Estimate potential energy exectation value
 %
-ExpectPotEn = -trapz(r, 1./r.*abs(Psi).^2);
+ExpectPotEn = -sum(1./r.*abs(Psi).^2)*h;
 
 % Total energy
 ExpectEn = ExpectKinEn + ExpectPotEn;
