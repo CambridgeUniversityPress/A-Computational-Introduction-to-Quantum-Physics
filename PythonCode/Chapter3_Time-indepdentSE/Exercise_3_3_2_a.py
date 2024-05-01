@@ -33,8 +33,6 @@ N = 512              # For FFT's sake, we should have N=2^n
 
 # Physical parameters:
 Kpot = 1
-# Allocate vector with coefficients
-#Avector = np.zeros(N)
 # Assign values to the first few
 Avector = [4, 1, .1, 2, 1, .7, .3, .5, 2, 1]
 # Number of states in our basis
