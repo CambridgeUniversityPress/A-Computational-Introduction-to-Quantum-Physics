@@ -24,7 +24,7 @@ format short e
 
 % Numerical time parameters:
 Ttotal = 30;
-dt = 0.05;
+dt = 0.01;
 
 % Grid parameters
 L = 30;
@@ -32,12 +32,12 @@ N = 512;              % For FFT's sake, we should have N=2^n
 
 % Physical parameters:
 Kpot = 1;
-% Allocate vector with coefficients
-Avector = zeros(1, N);
-% Assign values to the first few
+% Assign vector with coefficients
 Avector(1:10) = [4 1 .1 2 1 .7 .3 .5 2 1];
+% The number of states in our expansion
+Nstates = length(Avector);
 % Ensure normalization
-Avector = Avector/sum(abs(Avector).^2);
+Avector = Avector/sqrt(sum(abs(Avector).^2));
 
 % Set up the grid.
 x = linspace(-L/2, L/2, N)';
@@ -60,10 +60,13 @@ EigValues = diag(EigValues);
 % Sort them
 [EigValues, Indexes] = sort(EigValues);
 EigVectors = EigVectors(:,Indexes);
+% Trunkate the set
+EigValues = EigValues(1:Nstates);
+EigVectors = EigVectors(:, 1:Nstates);
 % Normalize eigen vectors
 EigVectors = EigVectors/sqrt(h);
 % Check and correct sign og eigen states
-for n=1:N
+for n=1:Nstates
   if abs(min((x>0).*EigVectors(:,n))) > max((x>0).*EigVectors(:,n))
     EigVectors(:,n) = -EigVectors(:,n);
   end
@@ -89,10 +92,8 @@ set(gca, 'fontsize', 15)
 xlabel('x')
 
 %
-% Propagate
-%
-ProgressOld=0;
-
+% Simulate evolution
+% 
 while t < Ttotal
   % Update time
   t=t+dt;
