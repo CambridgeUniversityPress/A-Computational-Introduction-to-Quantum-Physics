@@ -34,11 +34,13 @@ N = 512              # For FFT's sake, we should have N=2^n
 # Physical parameters:
 Kpot = 1
 # Allocate vector with coefficients
-Avector = np.zeros(N)
+#Avector = np.zeros(N)
 # Assign values to the first few
-Avector[0:10] = [4, 1, .1, 2, 1, .7, .3, .5, 2, 1]
+Avector = [4, 1, .1, 2, 1, .7, .3, .5, 2, 1]
+# Number of states in our basis
+Nstates = len(Avector)
 # Ensure normalization
-Avector = Avector/np.sum(np.abs(Avector)**2)
+Avector = Avector/np.sqrt(np.sum(np.abs(Avector)**2))
 
 # Set up the grid.
 x = np.linspace(-L/2, L/2, N)
@@ -68,21 +70,25 @@ Ham = Tmat_FFT + V
 
 
 # Diagaonalize Hamiltonian (Hermitian matrix)
-Evector, PsiMat = np.linalg.eigh(Ham)
+EigVector, EigStates = np.linalg.eigh(Ham)
 # Normalize eigenstates
-PsiMat = PsiMat/np.sqrt(h)
+EigStates = EigStates/np.sqrt(h)
+# Truncate
+EigVector = EigVector[0:Nstates]
+EigStates = EigStates[:, 0:Nstates]
+
 # Check and correct sign og eigen states
-for n in range(0,N): 
-  if np.abs(np.min((x>0)*PsiMat[:,n])) > \
-  np.max((x>0)*PsiMat[:,n]):
-    PsiMat[:,n] = -PsiMat[:,n]
+for n in range(0, Nstates): 
+  if np.abs(np.min((x>0)*EigStates[:,n])) > \
+  np.max((x>0)*EigStates[:,n]):
+    EigStates[:,n] = -EigStates[:,n]
 
 
 #
 # Construct initial condition
 #
 # Wave function
-Psi = np.matmul(PsiMat, np.transpose(Avector))
+Psi = np.matmul(EigStates, np.transpose(Avector))
 
 
 # Initiate plot
@@ -102,8 +108,8 @@ while t < Ttotal:
   # Update time
   t=t+dt
   # Update wave packet
-  AvectorTime = np.exp(-1j*Evector*t)*Avector
-  Psi = np.matmul(PsiMat, np.transpose(AvectorTime))
+  AvectorTime = np.exp(-1j*EigVector*t)*Avector
+  Psi = np.matmul(EigStates, np.transpose(AvectorTime))
   # Update data for plots
   line1.set_ydata(np.power(np.abs(Psi), 2))
   # Update plots
