@@ -14,3 +14,6 @@ The scripts have primarily been developed within the Spyder environment on Linux
 than "Inline". It should also work to run it directly from the terminal.
 
 In case you find errors or things which are unreasonably cumbersome, the author would be most appreciative to your input.
+
+When solving the exercises, do note that you need to be aware and cautions about the input parameters, which - alsmost exclusively - have been hard coded. 
+Some of them relate to the physical system at hand, others relate to the numerics. In case of the latter, do note that these source files come with no guarantee that the numerical precision is adequate. The user must check this - by running and re-running the code with improved numerics until the results are virtually independent of the numerical parameters.
