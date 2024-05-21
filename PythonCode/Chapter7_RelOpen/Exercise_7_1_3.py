@@ -72,7 +72,6 @@ HamSchrod = Tmat + np.diag(Vpot(x))
 
 # Diagaonalize non-relativistic Hamiltonian (Hermitian matrix)
 EvectorSchrod, aux = np.linalg.eigh(HamSchrod)
-EvectorSchrod = EvectorSchrod
 
 # Dirac Hamiltonian
 HamDirac = np.zeros((2*N, 2*N), dtype = 'complex')
@@ -87,7 +86,6 @@ HamDirac[N:(2*N), 0:N] = c*Pmat
 
 # Diagaonalize relativistic Hamiltonian (Hermitian matrix)
 EvectorDirac, aux = np.linalg.eigh(HamDirac)
-EvectorDirac = EvectorDirac
 
 # Find the eigenenergies for bound states
 BoundIndexSchrod = np.where(EvectorSchrod < 0)
