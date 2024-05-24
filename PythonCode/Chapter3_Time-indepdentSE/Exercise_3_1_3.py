@@ -23,16 +23,16 @@ from matplotlib import pyplot as plt
 
 
 # Numerical grid parameters
-L = 50;
-N = 1000;                
+L = 50
+N = 1000                
 
 # The number of plots
-Nplots = 8;
+Nplots = 8
 
 # Set up grid. Here r = 0 and r = L are excluded. It does, however, use
 # that psi(0) = psi(L) = 0.
-h = L/(N+1);
-r = np.linspace(h, L-h, N);      
+h = L/N
+r = np.linspace(h, L, N)      
 # Convert to column vector
 r = np.transpose(r)
 
@@ -53,9 +53,8 @@ Tmat_FD3 = Tmat_FD3/h**2
 Tmat_FD3 = -1/2*Tmat_FD3  
 
 
-
 # Full Hamiltonian
-Ham = Tmat_FD3 + np.diag(Vpot);         
+Ham = Tmat_FD3 + np.diag(Vpot)         
 
 # Diagaonalize Hamiltonian (Hermitian matrix)
 Evector, PsiMat = np.linalg.eigh(Ham)
