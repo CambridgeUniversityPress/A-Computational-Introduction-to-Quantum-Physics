@@ -25,8 +25,8 @@ Nplots = 8;
 
 % Set up grid. Here r = 0 and r = L are excluded. It does, however, use
 % that psi(0) = psi(L) = 0.
-h = L/(N+1);
-r = transpose(linspace(h, L-h, N));      % Column vector
+h = L/N;
+r = transpose(linspace(h, L, N));      % Column vector
 
 % Set up potetial
 Vpot = -1./r;
