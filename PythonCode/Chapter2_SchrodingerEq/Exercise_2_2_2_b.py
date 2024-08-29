@@ -108,5 +108,5 @@ MeanT_FFT = complex(MeanT_FFT)
 # Print results to screen (only real part):
 print('Kinetic energy energy estimates:')
 print(f'Three point-forumla: {np.real(MeanT_FD3):.4f}')
-print(f'Three point-forumla: {np.real(MeanT_FD5):.4f}')
+print(f'Five point-forumla: {np.real(MeanT_FD5):.4f}')
 print(f'Fast Fourier transform: {np.real(MeanT_FFT):.4f}')
