@@ -1,5 +1,4 @@
-"""
-This script simply tests our numerical solution of the Schrödinger equation 
+"""This script simply tests our numerical solution of the Schrödinger equation 
 against an exact analytical soltuion. The test case corresponds to a constant 
 Hamiltonian. The initial state is a spin up-state.
 
@@ -32,17 +31,16 @@ Tfinal = 40
 # y'(t) = -i H(t) y(t), where y is the spinor and H is
 # the Hamiltonian
 # Static part of the Hamiltonian
-H0 = np.matrix([[-E/2, 0], [0, E/2]])
+H0 = np.array([[-E/2, 0], [0, E/2]])
 # The coupling
-Interaction = np.matrix([[0, 1], [1, 0]])
+Interaction = np.array([[0, 1], [1, 0]])
 def RHS(t, y):
   Ham = H0 + Omega/2*Interaction
-  Yderiv = np.matmul(Ham, y.reshape(2,1))
-  return -1j*np.asarray(Yderiv)
+  Yderiv = np.matmul(Ham, y)
+  return -1j*Yderiv
   
 # Initial state (must be  complex)
-y0 = [complex(1,0), complex(0, 0)]
-y0 = np.asarray(y0)
+y0 = np.array([1, 0], dtype = complex)
 
 # ODE solver
 # Fix times for the outputs from ODE solver
@@ -65,6 +63,6 @@ plt.plot(tVect, Analytical, '--', color='red',
 plt.xlabel('Time')
 plt.ylabel('Spin up-probability')
 plt.legend(loc = 'upper right')
-plt.grid()
+plt.grid(visible = True)
 plt.ylim(0, 1.1)
 plt.show()
