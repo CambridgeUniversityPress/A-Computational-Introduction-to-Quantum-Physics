@@ -61,7 +61,7 @@ sol = integrate.solve_ivp(RHS, (0, Tfinal), y0, t_eval = tVect,
 plt.figure(1)
 plt.clf()
 plt.plot(sol.t, np.abs(sol.y[0,:])**2, '-', color='black')
-plt.grid()
+plt.grid(visible = True)
 plt.xlabel('Time', fontsize = 12)
 plt.ylabel('Spin up-probability', fontsize = 12)
 plt.ylim(0, 1.1)
