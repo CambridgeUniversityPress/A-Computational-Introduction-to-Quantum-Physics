@@ -1,5 +1,4 @@
-"""
-This script simulates a spin 1/2-particle which is exposed to a magnetic 
+"""This script simulates a spin 1/2-particle which is exposed to a magnetic 
 field. This field has both  a static part and a dynamic part. The dynamic part 
 oscillates in time as a sine function. The static field points in the 
 z-direction, thus lifting the degenerecy between spin up and spin down. The 
@@ -40,17 +39,16 @@ Tfinal = OpticalCycles*2*np.pi/w
 # y'(t) = -i H(t) y(t), where y is the spinor and H is
 # the Hamiltonian
 # Static part of the Hamiltonian
-H0 = np.matrix([[-E/2, 0], [0, E/2]])
+H0 = np.array([[-E/2, 0], [0, E/2]])
 # The coupling
-Interaction = np.matrix([[0, 1], [1, 0]])
+Interaction = np.array([[0, 1], [1, 0]])
 def RHS(t, y):
   Ham = H0 + Omega*np.sin(w*t)*Interaction
-  Yderiv = np.matmul(Ham, y.reshape(2,1))
-  return -1j*np.asarray(Yderiv)
+  Yderiv = np.matmul(Ham, y)
+  return -1j*Yderiv
   
 # Initial state (must be  complex)
-y0 = [complex(1,0), complex(0, 0)]
-y0 = np.asarray(y0)
+y0 = np.array([1, 0], dtype = complex)
 
 # ODE solver
 # In order to fix the time points for the output
