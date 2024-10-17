@@ -73,7 +73,7 @@ plt.clf()
 while Evector[n] < 0:
     print(f'Admissible bound energy: {Evector[n]:.4f}')
     LegendEntry = 'WF for n = ' + str(n)
-    plt.plot(x, PsiMat[:,n], label = LegendEntry)
+    plt.plot(x, np.real(PsiMat[:,n]), label = LegendEntry)
     n = n+1
     plt.show()
 
