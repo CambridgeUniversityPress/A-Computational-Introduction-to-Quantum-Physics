@@ -1,5 +1,5 @@
 """
-This script solve the Schrödinger equation for a 1D model of an atom 
+This script solve the SchrÃ¶dinger equation for a 1D model of an atom 
 exposed to a linearly polarized laser pulse in the dipole approximation. 
 It does so by directly propagating the wave packet on a numerical grid by 
 means of a Magnus propagator.
@@ -134,7 +134,7 @@ while t < Tpulse:
   line2.set_ydata(np.abs(Psi)**2)
   # Update plots
   fig.canvas.draw()
-  #fig.canvas.flush_events()
+  fig.canvas.flush_events()
   plt.pause(0.01)
   
   # Update time
@@ -153,7 +153,7 @@ while t < Tpulse + Tafter:
   
   # Update plots
   fig.canvas.draw()
-  #fig.canvas.flush_events()
+  fig.canvas.flush_events()
   plt.pause(0.01)
   
   # Update time
