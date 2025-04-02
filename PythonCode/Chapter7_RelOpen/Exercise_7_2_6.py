@@ -94,7 +94,7 @@ print(f'Ground state energy: {E[0]:.4f}')
 Nbound = len(np.argwhere(E<0))     
 print(f'The potential supports {Nbound} bound state(s).')
 
-# Construct non-Hermitian contribution to effective Hamiltonian
+# Construct anti-Hermitian contribution to effective Hamiltonian
 # Vector with couplings, <\phi_l | x | \phi_0>
 aux = np.matmul(np.diag(x), B[:, 0])
 ProjectVect = h*np.matmul(np.conj(B.T), aux)
@@ -105,10 +105,10 @@ ProjectVect[0] = 0
 GammaKL = Gamma0*np.matmul(ProjectVect, np.conj(ProjectVect.T))       
 # Anti-Hermitian "interaction matrix"
 aux = np.matmul(GammaKL, np.conj(B.T))
-HamNH = h/2*np.matmul(B, aux)
+HamAH = h/2*np.matmul(B, aux)
 
 # Total, Non-Hermitian Hamiltonian:
-HamTot = Ham - 1j*HamNH
+HamTot = Ham - 1j*HamAH
 # Non-unitary propagator
 U = linalg.expm(-1j*HamTot*dt)                   
 
@@ -149,7 +149,7 @@ for timeIndX in range(0, NstepTime):
   Norm = np.trapz(np.abs(Psi.T)**2, dx = h)
   Norm = float(Norm)
   # Update gound state population
-  aux = np.matmul(HamNH, Psi)
+  aux = np.matmul(HamAH, Psi)
   rho00 = rho00 + dt*2*h*np.matmul(np.conj(Psi.T), aux)
   rho00 = np.real(rho00)
   
