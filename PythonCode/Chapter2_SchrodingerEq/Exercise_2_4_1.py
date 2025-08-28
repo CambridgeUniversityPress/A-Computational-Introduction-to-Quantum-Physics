@@ -32,8 +32,8 @@ from matplotlib import pyplot as plt
 from scipy import linalg
 
 # Numerical grid parameters
-L = 400
-N = 2048         # Should be 2**k, with k being an integer
+L = 300
+N = 512         # Should be 2**k, with k being an integer
 
 # Numerical time parameters
 Tfinal = 100
@@ -87,11 +87,16 @@ plt.ion()
 fig = plt.figure(1)
 plt.clf()
 ax = fig.add_subplot()
-ax.set(ylim=(0, .2))                # Fix window
+# Fix window
+if V0<0:
+  ax.set(ylim=(-.1, .2))
+else:
+  ax.set(ylim=(0, .2))
+
 line1, = ax.plot(x, np.abs(Psi0)**2, '-', color='black')
 # Scaling and plotting the potential
 Psi0Max = np.max(np.abs(Psi0)**2)
-line2, = ax.plot(x, 0.7*Vpot*Psi0Max/V0, '-', color='red')
+line2, = ax.plot(x, 0.7*Vpot*Psi0Max/np.abs(V0), '-', color='red')
 plt.xlabel('x')
 
 # Initiate wave functons and time
