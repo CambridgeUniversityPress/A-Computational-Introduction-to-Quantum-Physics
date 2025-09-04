@@ -62,7 +62,7 @@ Tmat_FFT = ifft(Tmat_FFT);
 Tmat_FFT = -1/2*Tmat_FFT;            % Correct prefactor
 
 % Total Hamiltonian
-H = Tmat_FFT + diag(Vpot(xp));
+H = Tmat_FFT + diag(Vpot(x));
 %H = 0.5*(H+H');           % Enforce Hermicity
 
 
