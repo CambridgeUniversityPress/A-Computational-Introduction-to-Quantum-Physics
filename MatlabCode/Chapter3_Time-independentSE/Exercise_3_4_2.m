@@ -41,7 +41,7 @@ s = 5;
 
 % Grid parameters
 L = 30;
-N = 2048;              % For FFT's sake, we should have N=2^n
+N = 1024;              % For FFT's sake, we should have N=2^n
 
 % Shape of the potential
 Vpot = @(x) V0./(exp(s*(abs(x)-w/2))+1);
@@ -63,7 +63,6 @@ Tmat_FFT = -1/2*Tmat_FFT;            % Correct prefactor
 
 % Total Hamiltonian
 H = Tmat_FFT + diag(Vpot(x));
-H = 0.5*(H+H');           % Enforce Hermicity
 
 % Calculate expectation value of the Hamiltonian
 % for various sigmas
@@ -79,8 +78,8 @@ end
 [EigVectors EigValues] = eig(H);
 % Extract eigen values from diagonal matrix
 EigValues = diag(EigValues);
-% Sort them
-[EigValues, Indexes] = sort(EigValues);
+% Sort them (and remove spurious imaginary parts)
+[EigValues, Indexes] = sort(real(EigValues));
 EigVectors = EigVectors(:,Indexes);
 % "Exact" groundState
 GroundStateEnergy = EigValues(1);
