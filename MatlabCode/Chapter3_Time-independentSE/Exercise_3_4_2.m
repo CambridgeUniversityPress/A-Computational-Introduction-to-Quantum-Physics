@@ -63,8 +63,7 @@ Tmat_FFT = -1/2*Tmat_FFT;            % Correct prefactor
 
 % Total Hamiltonian
 H = Tmat_FFT + diag(Vpot(x));
-%H = 0.5*(H+H');           % Enforce Hermicity
-
+H = 0.5*(H+H');           % Enforce Hermicity
 
 % Calculate expectation value of the Hamiltonian
 % for various sigmas
