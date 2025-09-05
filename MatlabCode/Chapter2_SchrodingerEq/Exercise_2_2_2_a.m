@@ -61,7 +61,7 @@ MeanT_FD5 = -1/2*trapz(x,conj(Psi).*PsiDD_FD5);
 MeanT_FFT = -1/2*trapz(x,conj(Psi).*PsiDD_FFT);
 
 % Print results to screen (only real part):
-disp('Kinetic energy energy estimates (real parts):')
+disp('Kinetic energy estimates (real parts):')
 disp(['Three point-forumla: ', num2str(real(MeanT_FD3))])
 disp(['Five point-forumla: ', num2str(real(MeanT_FD5))])
 disp(['Fast Fourier transform: ', num2str(real(MeanT_FFT))])
