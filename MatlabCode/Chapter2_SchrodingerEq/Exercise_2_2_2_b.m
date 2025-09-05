@@ -72,7 +72,7 @@ MeanT_FD5 = h*Psi'*Tmat_FD5*Psi;
 MeanT_FFT = h*Psi'*Tmat_FFT*Psi;
 
 % Print results to screen:
-disp('Kinetic energy energy estimates (real parts):')
+disp('Kinetic energy estimates (real parts):')
 disp(['Three point-forumla: ', num2str(real(MeanT_FD3))])
 disp(['Five point-forumla: ', num2str(real(MeanT_FD5))])
 disp(['Fast Fourier transform: ', num2str(real(MeanT_FFT))])
