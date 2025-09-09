@@ -1,6 +1,6 @@
 """
  This script estimates the ground state energy of a "smooth" rectangular 
- potential by means of the variational principle. As a test function we 
+ potential by means of the variational principle. As a trial function we 
  use a Gaussian wave packet centered at the origin with a variable width.
 
  The Hamiltonian is estimated numerically using an FFT representation of 
@@ -59,7 +59,7 @@ h = L/(N-1)
 Nsigma = int(np.floor((SigmaMax-SigmaMin)/SigmaStep))+1
 SigmaVector = np.linspace(SigmaMin, SigmaMax, Nsigma)
 
-# Test function
+# Trial function
 def PsiFunk(x, Sigma):
     return (2*np.pi*Sigma**2)**(-0.25)*np.exp(-x**2/(4*Sigma**2))
 
@@ -88,7 +88,7 @@ SigmaInd = 0
 EnergyMin = 1e6
 EnergyVector = np.zeros(Nsigma)
 for Sigma in SigmaVector:
-    # Test function
+    # Trial function
     Psi = PsiFunk(x, Sigma)
     # Hermitian adjoint
     PsiDagger = np.transpose(Psi)
