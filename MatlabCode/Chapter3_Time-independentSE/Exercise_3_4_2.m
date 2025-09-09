@@ -1,6 +1,6 @@
 % This script estimates the ground state energy of a "smooth" 
 % rectangular potential by means of the variational principle. 
-% As a test function we use a Gaussian wave packet centered at the 
+% As a trial function we use a Gaussian wave packet centered at the 
 % origin with a variable width.
 %
 % The Hamiltonian is estimated numerically using an FFT representation 
@@ -31,8 +31,8 @@ SigmaMin = 0.1;
 SigmaMax = 5;
 SigmaStep = 0.05;
 
-% Test function
-PsiTest = @(x,sigma) (2*pi*sigma^2)^(-0.25)*exp(-x.^2/(4*sigma^2));
+% Trial function
+PsiTrial = @(x,sigma) (2*pi*sigma^2)^(-0.25)*exp(-x.^2/(4*sigma^2));
 
 % Potential:
 V0 = -3;
@@ -68,7 +68,7 @@ H = Tmat_FFT + diag(Vpot(x));
 % for various sigmas
 index = 1;
 for sigma = SigmaMin:SigmaStep:SigmaMax
-  Psi = PsiTest(x,sigma);                 % Wave function
+  Psi = PsiTrial(x,sigma);                 % Wave function
   Sigma(index) = sigma;                   % Vector with sigma-values
   Energy(index) = h*Psi'*H*Psi;           % Expectation value
   index=index+1;                          % Update index
@@ -113,7 +113,7 @@ legend('<E(\sigma)>','Exact')
 % Plot wave functions - the estimate and the "exact" one
 %
 % Estimated ground state
-Psi = PsiTest(x, Sigma(MinInd));               
+Psi = PsiTrial(x, Sigma(MinInd));               
 figure(2)
 plot(x, abs(Psi).^2, 'k-', 'linewidth', 2)
 hold on
