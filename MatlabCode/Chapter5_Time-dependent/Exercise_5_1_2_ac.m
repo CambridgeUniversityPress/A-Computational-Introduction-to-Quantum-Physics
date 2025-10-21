@@ -32,7 +32,7 @@ Tfinal = OpticalCycles*2*pi/w;
 % Set up the equation - with the Hamiltonian
 H0 = [-E/2 0; 0, E/2];                  % Static part
 InteractionMatrix = [0 1; 1, 0];        % Coupling matrix
-% Right and side of the TDSE
+% Right hand side of the TDSE
 F = @(t,x) -i*(H0+Omega*sin(w*t)*InteractionMatrix)*x;
 
 % Initial state
