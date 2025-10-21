@@ -27,7 +27,7 @@ Tfinal = 40;
 % Set up the equation - with the Hamiltonian
 H0 = [-E/2 0; 0, E/2];                  % Static part
 InteractionMatrix = [0 1; 1, 0];        % Coupling matrix
-% Right and side of the TDSE
+% Right hand side of the TDSE
 F = @(t,x) -i*(H0+Omega/2*InteractionMatrix)*x;
 
 % Initial state
