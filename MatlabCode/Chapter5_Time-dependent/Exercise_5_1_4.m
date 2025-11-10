@@ -43,7 +43,7 @@ Tfinal = OpticalCycles*2*pi/w;
 H0 = [-E+u 0 0 0; 0 -u 2*u 0; 0 2*u -u 0; 0 0 0 E+u];                  
 % Coupling matrix
 InteractionMatrix = [0 1 1 0; 1 0 0 1; 1 0 0 1; 0 1 1 0];        
-% Right and side of the TDSE
+% Right hand side of the TDSE
 F = @(t,x) -i*(H0+Omega*sin(w*t)*InteractionMatrix)*x;
 
 % Initial state
