@@ -2,7 +2,7 @@
  This script simulates the evolution of an intially Gaussian wave 
  passing a well. In addition to scattering, the simulation features
  the possibility of capturing the incident particle in the ground 
- state. This comes about via a jumb operator of Lindblad form.
+ state. This comes about via a jump operator of Lindblad form.
 
  Numerical inputs:
    L       - The extension of the spatial grid 
