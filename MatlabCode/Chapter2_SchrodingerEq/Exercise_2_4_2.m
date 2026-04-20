@@ -25,22 +25,22 @@
 % All inputs are hard coded initially.
 
 % Numerical grid parameters
-L = 200;
-N = 2048;                % Should be 2^k, k integer, for FFT's sake
+L = 150;
+N = 1024;                % Should be 2^k, k integer, for FFT's sake
 h = L/(N-1);
 
 % Numerical time parameters
-Tfinal = 60;
+Tfinal = 30;
 dt = 0.025;
 
 % Input parameters for the Gaussian
 x0 = -20;
-p0 = 1;
+p0 = 2;
 sigmaP = 0.2;
 tau = 0;
 
 % Input parameters for the barrier
-V0 = 1;
+V0 = -1;
 w = 2;
 s = 5;
 
@@ -85,10 +85,10 @@ plWF = plot(x,abs(Psi).^2, 'k-', 'linewidth', 1.5);
 MaxValPsi0 = max(abs(Psi).^2);     % For scaling the barrier plot
 hold on
 % Plot potential
-plot(x, 0.4*Vpot(x)/V0*MaxValPsi0, 'r-', 'linewidth', 2)
+plot(x, 0.4*Vpot(x)/abs(V0)*MaxValPsi0, 'r-', 'linewidth', 2)
 % Plot classical position
 plClassical = plot(xCl, 0, 'b*', 'linewidth', 5);
-axis([-L/2 L/2 0 1.5*MaxValPsi0])                % Set axes
+axis([-L/2 L/2 min(0, -0.4*MaxValPsi0) 1.5*MaxValPsi0])                % Set axes
 xlabel('Position x')
 set(gca, 'fontsize', 15)
 hold off
