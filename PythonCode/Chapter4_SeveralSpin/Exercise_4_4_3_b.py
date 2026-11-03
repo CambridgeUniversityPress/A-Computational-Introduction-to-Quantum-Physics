@@ -1,8 +1,8 @@
 """
  This script estimates the ground state energy for a two-particle system 
- consisting of two identical fermions. The particles interact via a smooth 
- Coulomb-like interaction, and they are confined by a "smooth" rectangular 
- potential.
+ consisting of two identical fermions in one dimension. The particles 
+ interact via a smoothCoulomb-like interaction, and they are confined by 
+ a "smooth" rectangular potential.
  The ground state energy is estimated by means of the variational principle. 
  As a trial function we use a product of two idential Gaussian wave packets 
  with a variable width.
