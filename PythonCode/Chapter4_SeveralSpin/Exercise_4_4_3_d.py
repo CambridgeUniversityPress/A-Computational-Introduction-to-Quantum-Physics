@@ -1,6 +1,6 @@
 """
  This script estimates the ground state energy for a two-particle system in 
- one dimensions. The trial function is a symmetrized product of Gaussian 
+ one dimension. The trial function is a symmetrized product of Gaussian 
  single-particle functions with mean positions of opposite signs.
  Specifically: 
  Psi ~ 
